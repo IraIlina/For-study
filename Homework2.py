@@ -16,14 +16,14 @@ class ComplexNumber:
         return self.b
 
     def get_sopriazhonnoe(self):
-        return Complex(self.real, -1 * self.imag)
+        return Complex(self.a, -1 * self.b)
 
     def get_module(self):
-        self.m = np.sqrt(self.real ** 2 + self.imag ** 2)
-        return self.m
+        self.r = np.sqrt(self.a ** 2 + self.b ** 2)
+        return self.r
 
     def get_phi(self):
-        if self.a > 0 and self._b > 0:
+        if self.a > 0 and self.b > 0:
             self.phi = np.arctan(self.b/self.a)
 
         elif self.a < 0 and self.b > 0:
@@ -54,17 +54,14 @@ class ComplexNumber:
           
             
         
-    def complex_to_exp(self):            
-            return self.get_module(), self.get_phi()
+    def complex_to_exp(self):
+        return self.get_module(), self.get_phi()
 
     def exp_to_complex(self):
-        if self._r == 0:
-            self.a, self.b = 0, 0
-        else:
-            self.a = np.cos(self.phi) * self.r
-            self.b = np.sin(self.phi) * self.r 
-            
-            return self.a, self.b
+        self.r, self.phi = self.a, self.b
+        self.a = np.cos(self.phi) * self.r
+        self.b = np.sin(self.phi) * self.r 
+        return self.a, self.b
         
 
         
