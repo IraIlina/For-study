@@ -1,8 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
+import numpy as np
 
 class ComplexNumber:
     def __init__(self, a, b):
@@ -27,56 +23,39 @@ class ComplexNumber:
         return self.m
 
     def get_phi(self):
-        if self.a > 0:
-            self.phi = np.arctan(self.b / self.a) * 180 / np.pi
+        if self.a > 0 and self._b > 0:
+            self.phi = np.arctan(self.b/self.a)
 
         elif self.a < 0 and self.b > 0:
-            self.phi = (np.arctan(self.b / self.b) + np.pi) * 180 / np.pi
+            self.phi = np.pi - np.arctan(self.b/abs(self.a))
 
         elif self.a < 0 and self.b < 0:
-            self.phi = (np.arctan(self.b / self.a) - np.pi) * 180 / np.pi
+            self.phi = np.pi + np.arctan(abs(self.b)/abs(self.a))
 
-        elif self.b == 0:
+        elif self.a > 0 and self.b < 0:
+            self.phi = 2 * np.pi - np.arctan(abs(self.b)/self.a)
+
+        elif self.a == 0 and self.b > 0:
+            self.phi = np.pi/2
+
+        elif self.a == 0 and self.b < 0:
+            self.phi = - np.pi / 2
+
+        elif self.a == 0 and self.b == 0:
             self.phi = 0
 
-        elif self.a == 0:
-            self.phi = 90
+        elif self.a > 0 and self.b == 0:
+            self.phi = 0
+
+        elif self.a < 0 and self.b == 0:
+            self.phi = np.pi
 
         return self.phi
           
             
         
-    def complex_to_exp(self):
-        self.r = (self.a**2 + self.b**2)**0.5
-
-        if self.a > 0 and self._b > 0:
-            self.phi = np.arctan(self.b/self.a)
-
-        if self.a < 0 and self.b > 0:
-            self.phi = np.pi - np.arctan(self.b/abs(self.a))
-
-        if self.a < 0 and self.b < 0:
-            self.phi = np.pi + np.arctan(abs(self.b)/abs(self.a))
-
-        if self.a > 0 and self.b < 0:
-            self.phi = 2 * np.pi - np.arctan(abs(self.b)/self.a)
-
-        if self.a == 0 and self.b > 0:
-            self.phi = np.pi/2
-
-        if self.a == 0 and self.b < 0:
-            self.phi = - np.pi / 2
-
-        if self.a == 0 and self.b == 0:
-            self.phi = 0
-
-        if self.a > 0 and self.b == 0:
-            self.phi = 0
-
-        if self.a < 0 and self.b == 0:
-            self.phi = np.pi
-            
-            return self.r, self.phi
+    def complex_to_exp(self):            
+            return self.get_module(), self.get_phi()
 
     def exp_to_complex(self):
         if self._r == 0:
