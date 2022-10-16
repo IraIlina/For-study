@@ -10,8 +10,6 @@ class ComplexNumber:
         self.b = b
         
         
-    def __repr__(self):
-        return (self.a, self.b)
 
     def set_a(self, number):
         self.a = number
