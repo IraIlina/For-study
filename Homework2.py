@@ -16,7 +16,7 @@ class ComplexNumber:
         return self.b
 
     def get_sopriazhonnoe(self):
-        return Complex(self.a, -1 * self.b)
+        return ComplexNumber(self.a, -1 * self.b)
 
     def get_module(self):
         self.r = np.sqrt(self.a ** 2 + self.b ** 2)
