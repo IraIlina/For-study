@@ -27,7 +27,7 @@ class ComplexNumber(object):
         elif key == 1:
             return self.b
         else:
-            raise ValueError("2 indexes!!!")
+            raise IndexError("2 indexes!!!")
     
     def __setitem__(self, key, value):
         if key == 0:
@@ -35,7 +35,7 @@ class ComplexNumber(object):
         elif key == 1:
             self.b = value
         else:
-            raise ValueError("2 indexes!!!")
+            raise IndexError("2 indexes!!!")
 
         
 
