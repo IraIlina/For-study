@@ -123,13 +123,17 @@ class List:
     def __iter__(self):
         return List_Iterator(self)
     
-    def open_bin(self, name = None):
+    def _save_ (self, name="Date.bin"):
+        with open (name, mode="wb") as f:
+            pickle.dump(self, f)
+    
+    def _open_(self):
         try:
+            name = input()
             with open(name, mode = 'rb') as f:
                 return pickle.load(f)
         except FileNotFoundError:
             print ('Файла не существует!')
-        return
     
       
 A = List()
@@ -139,6 +143,6 @@ for element in A:
     print(element)
 print(A)
 
-A.save_bin()
-print(A.open_bin('date.bin'))
+A._save_()
+print(A.open_bin('Date.bin'))
 
