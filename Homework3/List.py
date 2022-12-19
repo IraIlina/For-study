@@ -70,7 +70,7 @@ class List:
             for j in range(i):
                 curr_pointer = curr_pointer.get_next()
 
-        elif i > self._length / 2:
+        else: # иначе - уязвимость при i = self._length / 2
             curr_pointer = self._finish_pointer
             for j in range(self._length - i - 1):
                 curr_pointer = curr_pointer.get_prev()
@@ -103,7 +103,7 @@ class List:
                 m.append(self[j])
             else:
                 m.append(self[j + 1])
-        self = m
+        self = m # изменился тип объекта. И зачем так сложно, если можно просто затереть один с конца?
         return a
     
       
